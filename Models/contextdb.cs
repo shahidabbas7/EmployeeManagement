@@ -13,5 +13,9 @@ namespace EmployeeManagement.Models
                 
         }
         public DbSet<Employee> employees { get; set; }
+        protected override void  OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.seed();
+        }
     }
 }
