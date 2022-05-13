@@ -1,0 +1,30 @@
+﻿@model HomeDetialsVM
+@{
+    ViewBag.Title = "Employee detials";
+}
+
+<h1>@Model.Title</h1>
+<div class="card">
+    <div class="card-header">
+        @Model.employee.Name
+    </div>
+    <img class="card-img-top image" src="~/images/add client.png" asp-append-version="true" />
+    <div>
+      Name:  @Model.employee.Name
+    </div>
+    <div>
+      Department:  @Model.employee.Department
+    </div>
+    <div>
+       Email: @Model.employee.Email
+    </div>
+    <div class="card-footer">
+        <a asp-controller="Home" asp-action="index"  class="btn btn-primary m-1">Back</a>
+        <div class="col-md"></div>
+        <a asp-controller="Home" asp-action="Detial"  class="btn btn-primary m-1">Edit</a>
+        <div class="col-md"></div>
+        <a asp-controller="Home" asp-action="Detial"  class="btn btn-danger m-1">Delete</a>
+    </div>
+
+</div>
+
