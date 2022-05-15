@@ -1,9 +1,9 @@
 ﻿body {
 }
-.image{
-    height:100px;
-    width:100px;
+.image {
+    height: 200px;
+    width: auto;
 }
 .btn{
-    width:75px;
+    height:auto;
 }

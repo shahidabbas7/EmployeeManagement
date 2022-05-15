@@ -1,8 +1,11 @@
-﻿@model EmployeeVM
-@{ 
+﻿@model EmployeeEditVM
+@{
     ViewBag.Title = "Craete Employee";
+    var photopath = "~/images/" + (Model.existingpath ?? "add client.png");
 }
-<form enctype="multipart/form-data" asp-controller="home" asp-action="create" method="post" class="mt-3">
+<form enctype="multipart/form-data" asp-controller="home" asp-action="edit" method="post" class="mt-3">
+   <input hidden asp-for="id"/>
+   <input hidden asp-for="existingpath"/>
     <div class=" row">
         <label asp-for="Name" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
@@ -29,10 +32,14 @@
     <div class=" row">
         <label asp-for="photo" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <input asp-for="photo" class="form-control" type="file"  />
+            <input asp-for="photo" class="form-control" type="file" />
         </div>
     </div>
+    <div class=" row col-sm-4 offset-4 image">
+        <img src="@photopath" asp-append-version="true"/>
+    </div>
     <button type="submit" class="btn btn-primary">
-        Create
+        Update
     </button>
+    <a asp-controller="home" asp-action="index" class="btn btn-primary">Cancel</a>
 </form>

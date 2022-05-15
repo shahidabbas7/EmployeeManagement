@@ -2,19 +2,20 @@
 @{
     ViewBag.Title = "Employee List";
 }
-<div class="row">
+<div class="row card">
     @foreach (var emp in Model)
     {
-    <div class="col-md-3">
+        var photopath = "~/images/" + (emp.photopath ?? "add client.png");
+    <div class="col-md-3 m-1">
         <div class="card-header">
             @emp.Name
         </div>
-        <img class="card-img-top image" src="~/images/add client.png"  asp-append-version="true"/>
+        <img src="@photopath" class="card-img-top image card-img" asp-append-version="true"/>
         <div class="card card-footer text-center ">
             <div class="row">
-                <a asp-controller="Home" asp-action="Detials" asp-route-id="@emp.id" class="btn btn-primary m-1">View</a>
-                <a asp-controller="Home" asp-action="create" class="btn btn-primary m-1">Create</a>
-                <a asp-controller="Home" asp-action="Detial" asp-route-id="@emp.id" class="btn btn-danger m-1">Delete</a>
+                <a asp-controller="Home" asp-action="Detials" asp-route-id="@emp.id" class="btn btn-primary col-md-3 m-1">View</a>
+                <a asp-controller="Home" asp-action="edit" asp-route-id="@emp.id" class="btn btn-primary col-md-3 m-1">Edit</a>
+                <a asp-controller="Home" asp-action="Detial" asp-route-id="@emp.id" class="btn btn-danger col-md-4 m-1">Delete</a>
             </div>
            
         </div>

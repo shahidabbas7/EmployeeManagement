@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Models
 {
-    public class contextdb:DbContext
+    public class contextdb: IdentityDbContext
     {
         public contextdb(DbContextOptions<contextdb> options):base(options)
         {
@@ -15,6 +16,7 @@ namespace EmployeeManagement.Models
         public DbSet<Employee> employees { get; set; }
         protected override void  OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.seed();
         }
     }
