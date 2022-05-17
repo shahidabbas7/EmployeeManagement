@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IdentityRole>
+    <a class="btn btn-primary " style="width:auto" asp-controller="admin" asp-action="CreateRole">
+        Create Role
+    </a>
+@if (Model!=null)
+{
+    <h1>Roles List</h1>
+    foreach (var role in Model)
+    {
+        <div class="card">
+            <div class="card-header">
+                @role.Id
+            </div>
+            <div class="card-body">
+               @role.Name
+            </div>
+
+            <div class="card-footer">
+                <a class="btn btn-primary " asp-controller="admin" asp-action="EditRoles" asp-route-id="@role.Id">
+                    Edit
+                </a>
+                <a class="btn btn-primary " asp-controller="admin" asp-action="CreateRole">
+                    Delete
+                </a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No roles created yet
+        </div>
+        <div class="card-body">
+            Use the button below to create a role
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary " style="width:auto" asp-controller="admin" asp-action="CreateRole">
+                Create Role
+            </a>
+        </div>
+    </div>
+}

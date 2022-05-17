@@ -1,8 +1,10 @@
 using EmployeeManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +29,7 @@ namespace EmployeeManagement
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<IdentityUser, IdentityRole>(x =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(x =>
             {
                 //overriding password complexity
                 x.Password.RequiredLength = 8;
@@ -43,7 +45,12 @@ namespace EmployeeManagement
 
             //});
             services.AddDbContextPool<contextdb>(options => options.UseSqlServer(_config.GetConnectionString("employeedbcon")));
-            services.AddMvc(options=>options.EnableEndpointRouting=false).AddXmlSerializerFormatters();
+            services.AddMvc(options=> {
+                var policy = new AuthorizationPolicyBuilder().
+                RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+                options.EnableEndpointRouting = false;
+            }).AddXmlSerializerFormatters();
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>();
         }
 
@@ -76,7 +83,6 @@ namespace EmployeeManagement
             //using both the properties of Usedefaultfile and UsestaticFiles
             //app.UseFileServer();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
             app.UseAuthentication();
             app.UseMvc(route =>
             {
