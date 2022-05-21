@@ -74,6 +74,7 @@ namespace EmployeeManagement.Controllers
         }
         public ActionResult edit(int id)
         {
+            
             Employee employee = _employeerepository.GetEmployee(id);
             EmployeeEditVM employeeEditVM = new EmployeeEditVM()
             {

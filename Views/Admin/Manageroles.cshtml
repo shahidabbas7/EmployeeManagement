@@ -1,0 +1,31 @@
+﻿@model List<RolesUserVM>
+@{
+    string userid = ViewBag.userid;
+}
+<form method="post">
+    <div class="card">
+        <div class="card-header">
+            <h1>Add/Remove Roles From This User</h1>
+        </div>
+        <div class="card-body">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="form-check m-1">
+                    <input type="hidden" asp-for="@Model[i].Roleid" />
+                    <input type="hidden" asp-for="@Model[i].Rolename" />
+                    <input asp-for="@Model[i].IsSelected" class="form-check-input" />
+                    <label class="form-check-label" asp-for="@Model[i].IsSelected">
+                        @Model[i].Rolename
+                    </label>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Update" class="btn btn-primary" />
+            <a asp-action="EditUsers" asp-controller="admin" asp-route-id="@userid" class="btn btn-primary">
+                cancel
+            </a>
+        </div>
+    </div>
+
+</form>

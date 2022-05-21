@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Views\AccountController\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>

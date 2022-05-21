@@ -1,3 +1,12 @@
-﻿<h3>An error ocure processing your request</h3>
-<h5>please contact us on abc@gmail.com</h5>
+﻿@if (ViewBag.Title == null)
+{
+    <h3>An error occur processing your request</h3>
+    <h5>please contact us on abc@gmail.com</h5>
+}
+else
+{
+<h1 class="text-danger">@ViewBag.Title</h1>
+<h5 class="text-danger">@ViewBag.message</h5>
+}
+
 
